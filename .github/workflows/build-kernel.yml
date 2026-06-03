@@ -21,23 +21,12 @@ jobs:
           git config --global user.name "project_void"
           git config --global user.email "vod.dev@gmail.com"
 
-      - name: Setup commit-msg hook
-        run: |
-          mkdir -p ~/.git/hooks
-          git config --global core.hooksPath ~/.git/hooks
-          curl -fsSL https://gist.githubusercontent.com/UtsavBalar1231/c48cb6993ff45b077d41c13622fc27ba/raw/66f7da7f128a9511df81d624f23f87fc294b59b6/commit-msg \
-            -o ~/.git/hooks/commit-msg
-          chmod +x ~/.git/hooks/commit-msg
-
       
       - name: Build
         run: |
           bash build.sh --lto
           bash build.sh --lto --su
-
-      - name: Export prebuilts
-        run: bash prebuilt.sh
-
+          
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:

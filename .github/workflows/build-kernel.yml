@@ -29,13 +29,7 @@ jobs:
             -o ~/.git/hooks/commit-msg
           chmod +x ~/.git/hooks/commit-msg
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.PREBUILT_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-
+      
       - name: Build
         run: |
           bash build.sh --lto

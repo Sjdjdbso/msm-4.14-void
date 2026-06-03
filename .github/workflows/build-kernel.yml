@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: America/Sao_Paulo
-      KBUILD_BUILD_USER: nobody
+      KBUILD_BUILD_USER: void_project
       KBUILD_BUILD_HOST: android-build
 
     steps:
@@ -18,8 +18,8 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --global user.name "Richard Raya"
-          git config --global user.email "rdxzv.dev@gmail.com"
+          git config --global user.name "project_void"
+          git config --global user.email "vod.dev@gmail.com"
 
       - name: Setup commit-msg hook
         run: |
@@ -54,8 +54,8 @@ jobs:
         run: |
           DATE=$(date '+%H:%M %d/%m/%Y')
           COMMIT="https://github.com/${{ github.repository }}/commit/$(git rev-parse HEAD)"
-          STANDARD=$(ls FSociety-surya-*.zip)
-          KSU=$(ls FSociety-KSU-*.zip)
+          STANDARD=$(ls Void-surya-*.zip)
+          KSU=$(ls Void-KSU-*.zip)
           curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
             -F chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
             -F document=@"${STANDARD}" \
